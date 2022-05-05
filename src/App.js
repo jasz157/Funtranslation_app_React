@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+
 import './App.css';
+import InputCheckBox from './components/InputCheckBox';
+import TextArea from './components/TextArea';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='flexContainer'>
+      <h1>Funny Translations</h1>
+      <InputCheckBox/>
+      <TextArea/>
     </div>
-  );
+  )
 }
 
 export default App;
