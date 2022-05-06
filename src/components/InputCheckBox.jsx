@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 
-function InputCheckBox() {
+function InputCheckBox(props) {
 
     const lang = ['yoda', 'pirate', 'minion', 'mandalorian'];
+
+    console.log(props);
 
      const [Input , setInput] = useState("");
      console.log(Input)
@@ -16,6 +18,7 @@ function InputCheckBox() {
             setInput(e.target.name)
         }
     }
+
 
 
 
