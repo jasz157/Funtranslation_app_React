@@ -38,7 +38,12 @@ function TextArea(props) {
 
             case 'mandalorian':
                 idTranslate = 'mandalorian'
-                break;    
+                break;
+
+            default:
+                idTranslate = '';
+                break;
+
         };
 
         axios.post(`/translate/${idTranslate}.json`, { text: textValue })
@@ -64,7 +69,7 @@ function TextArea(props) {
         <>
             <form>
                 <textarea className="text" rows='25' cols='75' placeholder="Your text here..." onChange={handleSetText}></textarea>
-                <button style={{display:'flex'}}type="submit" onClick={handleSubmit}>Translate</button>
+                <button style={{ display: 'flex' }} type="submit" onClick={handleSubmit}>Translate</button>
             </form>
         </>
     )
