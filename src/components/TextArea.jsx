@@ -19,27 +19,35 @@ function TextArea(props) {
         e.preventDefault();
 
         const textArea = document.querySelector('.text');
+        let idTranslate = '';
 
 
-        if (props.Input) {
-            let idTranslate = '';
-            if (props.Input === 'yoda') {
+        switch (props.Input) {
+
+            case 'yoda':
                 idTranslate = 'yoda'
-            }
-            if (props.Input === 'minion') {
+                break;
+
+            case 'minion':
                 idTranslate = 'minion'
-            }
-            if (props.Input === 'pirate') {
+                break;
+
+            case 'pirate':
                 idTranslate = 'pirate'
-            }
+                break;
 
-            axios.post(`/translate/yoda.json`, { text: textValue })
-                .then(res => {
-                    let { translated } = res.data.contents;
-                    textArea.value = translated;
-                }).catch(err => {
-                    console.log(err)
-                })
+            case 'mandalorian':
+                idTranslate = 'mandalorian'
+                break;    
+        };
+
+        axios.post(`/translate/${idTranslate}.json`, { text: textValue })
+            .then(res => {
+                let { translated } = res.data.contents;
+                textArea.value = translated;
+            }).catch(err => {
+                console.log(err)
+            })
 
 
 
@@ -48,15 +56,15 @@ function TextArea(props) {
 
 
 
-        }
     }
+
 
 
     return (
         <>
             <form>
                 <textarea className="text" rows='25' cols='75' placeholder="Your text here..." onChange={handleSetText}></textarea>
-                <button type="submit" onClick={handleSubmit}>Translate</button>
+                <button style={{display:'flex'}}type="submit" onClick={handleSubmit}>Translate</button>
             </form>
         </>
     )

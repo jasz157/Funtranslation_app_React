@@ -5,7 +5,7 @@ import TextArea from "./TextArea";
 
 function InputCheckBox() {
 
-    const lang = ['yoda', 'pirate', 'minion'];
+    const lang = ['yoda', 'pirate', 'minion', 'mandalorian'];
 
     const [Input, setInput] = useState("");
 
