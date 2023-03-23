@@ -13,49 +13,44 @@ function TextArea(props) {
 
     }
 
-    function handleSubmit (e) {
-       e.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
 
-       const textArea = e.target;
+        const textArea = document.querySelector('.text');
 
-       if (props.checkBox) {
-        let idTranslate = '';
-        if (props.checkBox === 'yoda') {
-            idTranslate = 'yoda'
-        }
-        if (props.checkBox === 'minion') {
-            idTranslate = 'minion'
-        }
-        if (props.checkBox === 'pirate') {
-            idTranslate = 'pirate'
-        }
-        let request = async () => {
-            await fetch(`https://api.funtranslations.com/translate/${idTranslate}`, {
-                method: 'POST',
-                Name: 'text',
-                Type: 'string',
-                Description: textValue
+
+        if (props.Input) {
+            let idTranslate = '';
+            if (props.Input === 'yoda') {
+                idTranslate = 'yoda'
+            }
+            if (props.Input === 'minion') {
+                idTranslate = 'minion'
+            }
+            if (props.Input === 'pirate') {
+                idTranslate = 'pirate'
+            }
+
+            fetch(`https://api.funtranslations.com/translate/yoda.json`, { method: 'POST', text: textValue }).then(data => {
+                let objRequest = JSON.parse(data)
+                textArea.value = objRequest.data.contents.translated
+            }).catch(err => {
+                console.log(err)
             })
-        }
 
-        if (request) {
-            let objRequest = request.JSON.parse(request);
-            textArea.value = objRequest.translated;
+
+
+
+
         }
     }
-    }
-
-
-
-    console.log(props);
-
 
 
     return (
         <>
             <form>
-                <textarea rows='25' cols='75' placeholder="Your text here..." onChange={handleSetText} onSubmit={handleSubmit(e)}></textarea>
-                <button type="submit">Translate</button>
+                <textarea className="text" rows='25' cols='75' placeholder="Your text here..." onChange={handleSetText}></textarea>
+                <button type="submit" onClick={handleSubmit}>Translate</button>
             </form>
         </>
     )
