@@ -1,7 +1,9 @@
 import { React, useState } from "react";
-
+import axios from "axios";
 
 function TextArea(props) {
+
+
 
 
     const [textValue, setTextValue] = useState();
@@ -31,12 +33,16 @@ function TextArea(props) {
                 idTranslate = 'pirate'
             }
 
-            fetch(`https://api.funtranslations.com/translate/yoda.json`, { method: 'POST', text: textValue }).then(data => {
-                let objRequest = JSON.parse(data)
-                textArea.value = objRequest.data.contents.translated
-            }).catch(err => {
-                console.log(err)
-            })
+            axios.post(`/translate/yoda.json`, { text: textValue })
+                .then(res => {
+                    let { translated } = res.data.contents;
+                    textArea.value = translated;
+                }).catch(err => {
+                    console.log(err)
+                })
+
+
+
 
 
 
